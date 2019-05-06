@@ -74,6 +74,7 @@
             android:layout_below="@+id/message"
             android:orientation="horizontal"
             android:weightSum="100"
+            android:gravity="center"
             android:layout_marginTop="36dp">
 
             <Button
@@ -84,6 +85,7 @@
                 android:id="@+id/negativeBtn"
                 android:background="@drawable/curved_shape2"
                 android:textColor="#ffffff"
+                android:visibility="visible"
                 />
             <Button
                 android:layout_width="0dp"
