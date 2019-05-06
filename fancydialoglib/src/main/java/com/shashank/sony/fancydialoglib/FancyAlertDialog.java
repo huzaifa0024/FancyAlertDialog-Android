@@ -25,7 +25,7 @@ public class FancyAlertDialog {
     private Animation animation;
     private FancyAlertDialogListener pListener,nListener;
     private int pBtnColor,nBtnColor,bgColor;
-    private boolean cancel;
+    private boolean cancel,hidePositiveButton,hideNegativeButton;
 
 
 
@@ -44,6 +44,8 @@ public class FancyAlertDialog {
         this.nBtnColor=builder.nBtnColor;
         this.bgColor=builder.bgColor;
         this.cancel=builder.cancel;
+        this.hidePositiveButton = builder.hidePositiveButton;
+        this.hideNegativeButton = builder.hideNegativeButton;
     }
 
 
@@ -55,7 +57,7 @@ public class FancyAlertDialog {
         private Animation animation;
         private FancyAlertDialogListener pListener,nListener;
         private int pBtnColor,nBtnColor,bgColor;
-        private boolean cancel;
+        private boolean cancel,hidePositiveButton,hideNegativeButton;
 
         public Builder(Activity activity){
             this.activity=activity;
@@ -64,6 +66,8 @@ public class FancyAlertDialog {
             this.title=title;
             return this;
         }
+
+
 
         public Builder setBackgroundColor(int bgColor){
             this.bgColor=bgColor;
@@ -122,6 +126,15 @@ public class FancyAlertDialog {
 
         public Builder isCancellable(boolean cancel){
             this.cancel=cancel;
+            return this;
+        }
+
+        public Builder hidePositiveButton(boolean hidePositiveButton){
+            this.hidePositiveButton=hidePositiveButton;
+            return this;
+        }
+        public Builder hideNegativeButton(boolean hideNegativeButton){
+            this.hideNegativeButton=hideNegativeButton;
             return this;
         }
 
@@ -202,6 +215,13 @@ public class FancyAlertDialog {
                     }
                 });
             }
+
+            if(hideNegativeButton)
+                nBtn.setVisibility(View.GONE);
+
+
+            if(hidePositiveButton)
+                pBtn.setVisibility(View.GONE);
 
 
             dialog.show();
