@@ -10,6 +10,7 @@ import android.widget.Toast;
 import com.shashank.sony.fancydialoglib.Animation;
 import com.shashank.sony.fancydialoglib.FancyAlertDialog;
 import com.shashank.sony.fancydialoglib.FancyAlertDialogListener;
+import com.shashank.sony.fancydialoglib.FancyAlertDialogTwo;
 import com.shashank.sony.fancydialoglib.Icon;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -24,15 +25,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
-        new FancyAlertDialog.Builder(this)
+        new FancyAlertDialogTwo.Builder(this)
                 .setTitle("Rate us if you like the app")
                 .setMessage("Do you really want to Exit ?")
                 .setNegativeBtnText("Cancel")
                 .setPositiveBtnText("Rate")
                 .setAnimation(Animation.POP)
                 .isCancellable(true)
-                .hideNegativeButton(true)
-                .setIcon(R.drawable.ic_star_border_black_24dp,Icon.Visible)
+                .hideNegativeButton(false)
+                .setIcon(R.drawable.ic_thumb_up_black_24dp,Icon.Visible)
                 .OnPositiveClicked(new FancyAlertDialogListener() {
                     @Override
                     public void OnClick() {
