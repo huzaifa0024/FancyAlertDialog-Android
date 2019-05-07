@@ -2,6 +2,7 @@ package com.shashank.sony.fancydialoglib;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.GradientDrawable;
@@ -18,7 +19,7 @@ import android.widget.TextView;
 public class FancyAlertDialogTwo {
 
     private String title,message,positiveBtnText,negativeBtnText;
-    private Activity activity;
+    private Context context;
     private int icon;
     private Icon visibility;
     private Animation animation;
@@ -31,7 +32,7 @@ public class FancyAlertDialogTwo {
     private FancyAlertDialogTwo(Builder builder){
         this.title=builder.title;
         this.message=builder.message;
-        this.activity=builder.activity;
+        this.context=builder.context;
         this.icon=builder.icon;
         this.animation=builder.animation;
         this.visibility=builder.visibility;
@@ -50,7 +51,7 @@ public class FancyAlertDialogTwo {
 
     public static class Builder{
         private String title,message,positiveBtnText,negativeBtnText;
-        private Activity activity;
+        private Context context;
         private int icon;
         private Icon visibility;
         private Animation animation;
@@ -58,8 +59,8 @@ public class FancyAlertDialogTwo {
         private int pBtnColor,nBtnColor,bgColor;
         private boolean cancel,hidePositiveButton,hideNegativeButton;
 
-        public Builder(Activity activity){
-            this.activity=activity;
+        public Builder(Context context){
+            this.context=context;
         }
         public Builder setTitle(String title){
             this.title=title;
@@ -144,13 +145,13 @@ public class FancyAlertDialogTwo {
             View view;
             final Dialog dialog;
             if(animation==Animation.POP)
-            dialog=new Dialog(activity,R.style.PopTheme);
+            dialog=new Dialog(context,R.style.PopTheme);
             else if(animation==Animation.SIDE)
-            dialog=new Dialog(activity,R.style.SideTheme);
+            dialog=new Dialog(context,R.style.SideTheme);
             else if(animation==Animation.SLIDE)
-            dialog=new Dialog(activity,R.style.SlideTheme);
+            dialog=new Dialog(context,R.style.SlideTheme);
             else
-            dialog=new Dialog(activity);
+            dialog=new Dialog(context);
             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
             dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
             dialog.setCancelable(cancel);
