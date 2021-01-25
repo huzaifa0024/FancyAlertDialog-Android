@@ -6,4 +6,5 @@ package com.shashank.sony.fancydialoglib;
 
 public interface FancyAlertDialogListener {
     void OnClick();
+    void onSubmit(String userInputText);
 }

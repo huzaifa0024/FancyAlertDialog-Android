@@ -9,8 +9,10 @@ import android.view.View;
 import android.view.Window;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * Created by Shashank Singhal on 03/01/2018.
@@ -25,7 +27,7 @@ public class FancyAlertDialog {
     private Animation animation;
     private FancyAlertDialogListener pListener,nListener;
     private int pBtnColor,nBtnColor,bgColor;
-    private boolean cancel,hidePositiveButton,hideNegativeButton;
+    private boolean cancel,hidePositiveButton,hideNegativeButton,showUserInput;
 
 
 
@@ -46,6 +48,7 @@ public class FancyAlertDialog {
         this.cancel=builder.cancel;
         this.hidePositiveButton = builder.hidePositiveButton;
         this.hideNegativeButton = builder.hideNegativeButton;
+        this.showUserInput = builder.showUserInput;
     }
 
 
@@ -58,6 +61,7 @@ public class FancyAlertDialog {
         private FancyAlertDialogListener pListener,nListener;
         private int pBtnColor,nBtnColor,bgColor;
         private boolean cancel,hidePositiveButton,hideNegativeButton;
+        private boolean showUserInput = false;
 
         public Builder(Activity activity){
             this.activity=activity;
@@ -137,9 +141,13 @@ public class FancyAlertDialog {
             this.hideNegativeButton=hideNegativeButton;
             return this;
         }
-
+        public Builder showUserInput(boolean showUserInput){
+            this.showUserInput=showUserInput;
+            return this;
+        }
         public FancyAlertDialog build(){
             TextView message1,title1;
+            final EditText userInput;
             ImageView iconImg;
             Button nBtn,pBtn;
             View view;
@@ -161,6 +169,7 @@ public class FancyAlertDialog {
             view=(View)dialog.findViewById(R.id.background);
             title1= (TextView) dialog.findViewById(R.id.title);
             message1=(TextView)dialog.findViewById(R.id.message);
+            userInput=(EditText) dialog.findViewById(R.id.msisdn);
             iconImg=(ImageView)dialog.findViewById(R.id.icon);
             nBtn=(Button)dialog.findViewById(R.id.negativeBtn);
             pBtn=(Button)dialog.findViewById(R.id.positiveBtn);
@@ -190,7 +199,16 @@ public class FancyAlertDialog {
                     @Override
                     public void onClick(View view) {
                         pListener.OnClick();
-                        dialog.dismiss();
+                        if(showUserInput){
+                            if(userInput.getText().toString().length()>0){
+                                pListener.onSubmit(userInput.getText().toString());
+                                dialog.dismiss();
+                            }else{
+                                Toast.makeText(activity, "Please enter a valid phone number", Toast.LENGTH_SHORT).show();
+                            }
+                        }else {
+                            dialog.dismiss();
+                        }
                     }
                 });
             }
@@ -222,6 +240,10 @@ public class FancyAlertDialog {
 
             if(hidePositiveButton)
                 pBtn.setVisibility(View.GONE);
+
+            if(!showUserInput)
+                userInput.setVisibility(View.GONE);
+
 
 
             dialog.show();

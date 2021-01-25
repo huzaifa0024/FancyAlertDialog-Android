@@ -1,6 +1,5 @@
 package com.shashank.sony.fancydialoglib;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
@@ -225,7 +224,6 @@ public class FancyAlertDialogTwo {
 
 
             dialog.show();
-
             return new FancyAlertDialogTwo(this);
 
         }

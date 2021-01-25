@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
-        new FancyAlertDialogTwo.Builder(this)
+        new FancyAlertDialog.Builder(this)
                 .setTitle("Rate us if you like the app")
                 .setMessage("Do you really want to Exit ?")
                 .setNegativeBtnText("Cancel")
@@ -39,11 +39,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     public void OnClick() {
                         Toast.makeText(MainActivity.this,"Rate",Toast.LENGTH_SHORT).show();
                     }
+
+                    @Override
+                    public void onSubmit(String userInputText) {
+
+                    }
                 })
                 .OnNegativeClicked(new FancyAlertDialogListener() {
                     @Override
                     public void OnClick() {
                         Toast.makeText(MainActivity.this,"Cancel",Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onSubmit(String userInputText) {
+
                     }
                 })
                 .build();
