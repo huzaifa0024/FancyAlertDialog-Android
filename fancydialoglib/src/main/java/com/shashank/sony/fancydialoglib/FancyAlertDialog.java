@@ -169,7 +169,7 @@ public class FancyAlertDialog {
             view=(View)dialog.findViewById(R.id.background);
             title1= (TextView) dialog.findViewById(R.id.title);
             message1=(TextView)dialog.findViewById(R.id.message);
-            userInput=(EditText) dialog.findViewById(R.id.msisdn);
+            userInput=(EditText) dialog.findViewById(R.id.userInput);
             iconImg=(ImageView)dialog.findViewById(R.id.icon);
             nBtn=(Button)dialog.findViewById(R.id.negativeBtn);
             pBtn=(Button)dialog.findViewById(R.id.positiveBtn);
