@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 .setPositiveBtnText("Rate")
                 .setAnimation(Animation.POP)
                 .isCancellable(true)
+                .showUserInput(true)
                 .hideNegativeButton(false)
                 .setIcon(R.drawable.ic_thumb_up_black_24dp,Icon.Visible)
                 .OnPositiveClicked(new FancyAlertDialogListener() {
